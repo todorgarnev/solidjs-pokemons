@@ -5,6 +5,10 @@
 	text-align: center;
 }
 
+main {
+	padding: 2rem 5rem;
+}
+
 .pokemon {
 	padding: 1rem;
 	display: flex;
@@ -46,5 +50,7 @@
 
 .buttonsContainer {
 	margin-top: 5rem;
-	text-align: center;
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
 }

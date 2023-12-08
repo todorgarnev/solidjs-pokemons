@@ -1,12 +1,13 @@
-import { For, createEffect, createSignal, onMount } from "solid-js";
+import { For, createEffect, createSignal } from "solid-js";
 import styles from "./App.module.css";
 import { Button } from "@/components";
 
 export const App = () => {
+  const [page, setPage] = createSignal<number>(0);
   const [pokemons, setPokemons] = createSignal<Record<string, string>[]>([]);
 
-  onMount(async () => {
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=0`);
+  createEffect(async () => {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${page()}`);
     setPokemons(await res.json().then((data) => data.results));
   });
 
@@ -22,7 +23,7 @@ export const App = () => {
         <For each={pokemons()}>
           {(pokemon, i) => (
             <div class={styles.pokemon}>
-              <span class={styles.pokemonIndex}>{i() + 1}.</span>
+              <span class={styles.pokemonIndex}>{i() + page() * 10 + 1}.</span>
               <span class={styles.pokemonName}>{pokemon.name}</span>
               <Button>More info</Button>
             </div>
@@ -30,7 +31,11 @@ export const App = () => {
         </For>
 
         <div class={styles.buttonsContainer}>
-          <Button>Get next 10</Button>
+          <Button clickHandler={() => setPage(page() - 1)} page={page}>
+            Previous 10
+          </Button>
+
+          <Button clickHandler={() => setPage(page() + 1)}>Next 10</Button>
         </div>
       </main>
     </>

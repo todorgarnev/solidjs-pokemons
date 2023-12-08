@@ -8,6 +8,11 @@
 	border-radius: 0.3rem;
 	cursor: pointer;
 
+	&.disabled {
+		background-color: #ccc;
+		cursor: not-allowed;
+	}
+
 	&:hover {
 		opacity: 0.8;
 	}
