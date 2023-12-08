@@ -1,5 +1,6 @@
 import { For, createEffect, createSignal, onMount } from "solid-js";
 import styles from "./App.module.css";
+import { Button } from "@/components";
 
 export const App = () => {
   const [pokemons, setPokemons] = createSignal<Record<string, string>[]>([]);
@@ -23,10 +24,14 @@ export const App = () => {
             <div class={styles.pokemon}>
               <span class={styles.pokemonIndex}>{i() + 1}.</span>
               <span class={styles.pokemonName}>{pokemon.name}</span>
-              <button>More info</button>
+              <Button>More info</Button>
             </div>
           )}
         </For>
+
+        <div class={styles.buttonsContainer}>
+          <Button>Get next 10</Button>
+        </div>
       </main>
     </>
   );
