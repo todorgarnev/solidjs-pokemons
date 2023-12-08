@@ -31,7 +31,7 @@ export const App = () => {
         </For>
 
         <div class={styles.buttonsContainer}>
-          <Button clickHandler={() => setPage(page() - 1)} page={page}>
+          <Button clickHandler={() => setPage(page() - 1)} isDisabled={!page()}>
             Previous 10
           </Button>
 
