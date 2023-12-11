@@ -1,17 +1,16 @@
 import { For, createEffect, createSignal } from "solid-js";
+import { Button, PokemonInfoModal } from "@/components";
 import styles from "./App.module.css";
-import { Button } from "@/components";
 
 export const App = () => {
   const [page, setPage] = createSignal<number>(0);
+  const [pokemonId, setPokemonId] = createSignal<number>(0);
   const [pokemons, setPokemons] = createSignal<Record<string, string>[]>([]);
 
   createEffect(async () => {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${page()}`);
     setPokemons(await res.json().then((data) => data.results));
   });
-
-  createEffect(() => console.log(pokemons()));
 
   return (
     <>
@@ -25,7 +24,7 @@ export const App = () => {
             <div class={styles.pokemon}>
               <span class={styles.pokemonIndex}>{i() + page() * 10 + 1}.</span>
               <span class={styles.pokemonName}>{pokemon.name}</span>
-              <Button>More info</Button>
+              <Button clickHandler={() => setPokemonId(i() + 1)}>More info</Button>
             </div>
           )}
         </For>
@@ -37,6 +36,8 @@ export const App = () => {
 
           <Button clickHandler={() => setPage(page() + 1)}>Next 10</Button>
         </div>
+
+        <PokemonInfoModal pokemonId={pokemonId} setPokemonId={setPokemonId} />
       </main>
     </>
   );

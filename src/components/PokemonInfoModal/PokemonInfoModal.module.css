@@ -1,0 +1,15 @@
+.modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin: auto;
+	width: 50vw;
+	transform: translate(-50%, -50%);
+	background-color: darkmagenta;
+	border-radius: 1rem;
+
+	img {
+		margin-inline: auto;
+		width: 50%;
+	}
+}
