@@ -8,7 +8,7 @@ export const App = () => {
   const [pokemons, setPokemons] = createSignal<Record<string, string>[]>([]);
 
   createEffect(async () => {
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${page()}`);
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${page() * 10}`);
     setPokemons(await res.json().then((data) => data.results));
   });
 
@@ -24,7 +24,7 @@ export const App = () => {
             <div class={styles.pokemon}>
               <span class={styles.pokemonIndex}>{i() + page() * 10 + 1}.</span>
               <span class={styles.pokemonName}>{pokemon.name}</span>
-              <Button clickHandler={() => setPokemonId(i() + 1)}>More info</Button>
+              <Button clickHandler={() => setPokemonId(i() + page() * 10 + 1)}>More info</Button>
             </div>
           )}
         </For>
