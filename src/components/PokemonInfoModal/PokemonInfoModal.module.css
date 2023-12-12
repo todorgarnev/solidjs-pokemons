@@ -12,4 +12,74 @@
 		margin-inline: auto;
 		width: 50%;
 	}
+
+	.close {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		width: 2rem;
+		height: 2rem;
+		cursor: pointer;
+
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			left: 1rem;
+			height: 2rem;
+			width: 0.2rem;
+			background-color: #fff;
+		}
+
+		&::before {
+			transform: rotate(45deg);
+		}
+
+		&::after {
+			transform: rotate(-45deg);
+		}
+
+		&:hover::before {
+			animation: 0.5s closeAnimationLeft ease-in-out;
+		}
+
+		&:hover::after {
+			animation: 0.5s closeAnimationRight ease-in-out;
+		}
+	}
+}
+
+.overlay {
+	position: fixed;
+	inset: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(0.3rem);
+}
+
+@keyframes closeAnimationLeft {
+	0% {
+		transform: rotate(45deg);
+	}
+
+	50% {
+		transform: rotate(90deg);
+	}
+
+	100% {
+		transform: rotate(45deg);
+	}
+}
+
+@keyframes closeAnimationRight {
+	0% {
+		transform: rotate(-45deg);
+	}
+
+	50% {
+		transform: rotate(-95deg);
+	}
+
+	100% {
+		transform: rotate(-45deg);
+	}
 }

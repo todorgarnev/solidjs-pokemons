@@ -14,13 +14,15 @@ export const PokemonInfoModal: Component<PokemonInfoModalProps> = (props) => {
   return (
     <Show when={props.pokemonId()}>
       <Portal>
+        <div class={styles.overlay} />
+
         <div class={styles.modal}>
+          <span class={styles.close} onClick={() => props.setPokemonId(0)} />
+
           <img
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${props.pokemonId()}.png`}
             alt="Pokemon image"
           />
-
-          <button onClick={() => props.setPokemonId(0)}>Close</button>
         </div>
       </Portal>
     </Show>
