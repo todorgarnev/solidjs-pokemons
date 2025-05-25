@@ -12,10 +12,6 @@ export const App = () => {
     setPokemons(await res.json().then((data) => data.results));
   });
 
-  createEffect(() => {
-    console.log("page>> ", page());
-  });
-
   return (
     <>
       <header class={styles.header}>

@@ -17,14 +17,22 @@ export const PokemonInfoModal: Component<PokemonInfoModalProps> = (props) => {
         <div class={styles.overlay} />
 
         <div class={styles.modal}>
-          <div class={styles.title}>{pokemonInfo()?.name}</div>
+          {pokemonInfo.loading ? (
+            <div class={styles.loading}>Loading...</div>
+          ) : (
+            <>
+              <div class={styles.title}>{pokemonInfo()?.name}</div>
+              <span class={styles.close} onClick={() => props.setPokemonId(0)} />
 
-          <span class={styles.close} onClick={() => props.setPokemonId(0)} />
-
-          <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${props.pokemonId()}.png`}
-            alt="Pokemon image"
-          />
+              <div class={styles.imageContainer}>
+                <span>loading..</span>
+                <img
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${props.pokemonId()}.png`}
+                  alt="Pokemon image"
+                />
+              </div>
+            </>
+          )}
         </div>
       </Portal>
     </Show>
