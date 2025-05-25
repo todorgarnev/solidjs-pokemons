@@ -8,6 +8,14 @@
 	background-color: darkmagenta;
 	border-radius: 1rem;
 
+	.title {
+		padding-block: 1rem;
+		text-align: center;
+		text-transform: capitalize;
+		color: #fff;
+		font-size: 2rem;
+	}
+
 	img {
 		margin-inline: auto;
 		width: 50%;
