@@ -7,14 +7,14 @@ type ButtonProps = {
   clickHandler?: () => void;
 };
 
-export const Button: Component<ButtonProps> = (props) => {
+export const Button: Component<ButtonProps> = ({ clickHandler, isDisabled, children }) => {
   return (
     <button
-      class={`${styles.button} ${props.isDisabled ? styles.disabled : ""}`}
-      onClick={props.clickHandler}
-      disabled={props.isDisabled}
+      class={`${styles.button} ${isDisabled ? styles.disabled : ""}`}
+      onClick={clickHandler}
+      disabled={isDisabled}
     >
-      {props.children}
+      {children}
     </button>
   );
 };

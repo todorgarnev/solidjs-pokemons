@@ -8,19 +8,19 @@ type PokemonInfoModalProps = {
   setPokemonId: Setter<number>;
 };
 
-export const PokemonInfoModal: Component<PokemonInfoModalProps> = (props) => {
-  const [pokemonInfo] = createResource(props.pokemonId, fetchPokemonInfo);
+export const PokemonInfoModal: Component<PokemonInfoModalProps> = ({ pokemonId, setPokemonId }) => {
+  const [pokemonInfo] = createResource(pokemonId, fetchPokemonInfo);
 
   return (
-    <Show when={props.pokemonId()}>
+    <Show when={pokemonId()}>
       <Portal>
         <div class={styles.overlay} />
 
         <div class={styles.modal}>
-          <span class={styles.close} onClick={() => props.setPokemonId(0)} />
+          <span class={styles.close} onClick={() => setPokemonId(0)} />
 
           <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${props.pokemonId()}.png`}
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemonId()}.png`}
             alt="Pokemon image"
           />
         </div>
